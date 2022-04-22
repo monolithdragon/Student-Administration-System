@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tab {
+    color: rgb(156, 163, 175);
+    background-color: rgb(243 244 246); 
+}
+
+.tab.active {
+    color: rgb(103 232 249);
+    background-color: rgb(255 255 255);
+}
+
+.tab p {
+    color: rgb(209 213 219);
+}
+
+.tab.active p {
+    color: rgb(107 114 128);
+}
