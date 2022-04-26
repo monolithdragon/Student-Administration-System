@@ -2279,6 +2279,10 @@ function filter() {
   };
 }
 
+document.getElementById('search').onfocus = function () {
+  document.getElementById('search-icon').style.display = 'none';
+};
+
 /***/ }),
 
 /***/ "./node_modules/lodash/lodash.js":

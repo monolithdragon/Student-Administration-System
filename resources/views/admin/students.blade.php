@@ -7,14 +7,17 @@
     <div class="block rounded relative pb-8">
       <div class="uppercase text-neutral-400">Search For Name</div>
 
-      <svg class="absolute top-7 left-2 w-6 h-6 fill-neutral-100 bg-neutral-200" fill="currentColor"
+      <svg id="search-icon" class="absolute top-7 left-2 w-6 h-6 fill-neutral-100 bg-neutral-200" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
           d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
         </path>
       </svg>
 
-      <input type="text" class="px-2 py-1 bg-neutral-200 text-black">
+      <form action={{ route("admin.students") }} method="get">
+        
+          <input id="search" type="text" name="keyword" class="px-2 py-1 bg-neutral-200 text-black">
+      </form>
     </div>
     <div class="flex pt-7 ">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"

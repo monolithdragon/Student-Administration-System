@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\StudyGroup;
-
+use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     /**
@@ -15,17 +15,23 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $students = Student::where(function($query) use ($request) {
+        $study_groups = StudyGroup::all();
+        $students = Student::where(function ($query) use ($request) {
             if ($request->study) {
-                foreach ((array)$request->study as $group) {
-                    $group->students();
-                }
+                $user = DB::table('student_study_group')
+                ->select('student_id')
+                ->whereIn('study_group_id', $request->study)
+                ->get()
+                ->pluck('student_id')
+                ->toArray();
+
+                $query->whereIn('id', $user);
+            } else if ($request->keyword) {
+                $query->where('name', 'like',"%".$request->keyword."%");
             }
         })->paginate(5);
-        $count_of_students = count(Student::all());
-        $study_groups = StudyGroup::all();
         
-
+        $count_of_students = count(Student::all());
 
         return view('admin.students', [
             'students' => $students,
@@ -86,7 +92,7 @@ class StudentController extends Controller
     { 
         return view('admin.student_edit', [
             'student' => $student
-        ]);
+        ])->with('study_groups', StudyGroup::all());
     }
 
     /**
@@ -127,4 +133,6 @@ class StudentController extends Controller
     {
         //
     }
+
+    
 }

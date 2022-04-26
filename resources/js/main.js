@@ -52,3 +52,7 @@ function filter() {
         document.getElementById('students_table').innerHTML = table;
     }
 }
+
+document.getElementById('search').onfocus = function() {
+    document.getElementById('search-icon').style.display = 'none';
+}

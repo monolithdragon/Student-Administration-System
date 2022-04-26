@@ -17,8 +17,10 @@ class StudyGroup extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'leader',
+        'subject',
+        'enrolled',
+        'date_and_time'
     ];
 
     /**
